@@ -15,8 +15,8 @@ class weatherController {
 
         $('.search-button').click(()  => {
             let cityName = this.weatherHtml.findCityInDom();
-            this.weatherApi.findTemp(cityName).then( (data) => {
-                this.weatherData.addWeatherPost(data);
+            this.weatherApi.findTemp(cityName).then( (weatherOBJ) => {
+                this.weatherData.addWeatherPost(weatherOBJ);
                 this.weatherHtml.renderWeatherPost(this.weatherData.weatherPostArrey);
             })
                 .catch(function (jqXHR, textStatus, errorThrown) {
@@ -25,7 +25,7 @@ class weatherController {
         });
 
         $('.clear-posts').click( () => {
-            localStorage.removeItem(this.weatherData.STORAGE_ID)
+            localStorage.removeItem(this.weatherData.STORAGE_ID) // data should handle local storage
             this.weatherHtml.renderWeatherPost(this.weatherData.weatherPostArrey)
         })
 
